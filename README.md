@@ -2,6 +2,67 @@ Dubbox now means Dubbo eXtensions. If you know java, javax and dubbo, you know w
 
 Dubbox adds features like RESTful remoting, Kyro/FST serialization, etc to the popular [dubbo service framework](http://github.com/alibaba/dubbo). It's been used by several projects of [dangdang.com](http://www.dangdang.com), which is one of the major e-commerce companies in China.
 
+##YFSS 更新部分
+作者：BruceZCQ
+
+#####添加RestExceptionMapper,主要是	
+- RestForbiddenExceptionMapper[403];
+- RestNotAcceptableExceptionMapper[406];
+- RestNotAllowedExceptionMapper[405];
+- RestNotAuthorizedExceptionMapper[403];
+- RestNotFoundExceptionMapper[404];
+- RestNotSupportedExceptionMapper[415];
+- RestRedirectionExceptionMapper[3xx];
+- RestServerErrorExceptionMapper[500];
+- RestServiceUnavailableExceptionMapper[503];
+
+在使用rest协议时会注册(setExtension)到protocol;
+
+#####加入dubbo-apiconfig工具类,主要是
+com.alibaba.dubbo.common.service.export.support
+
+- DubboApplication.java
+- Log4jApplication.java
+- MethodUtils.java
+- PropertiesData.java
+- PropertiesDataUtils.java
+- Protocol.java
+
+com.alibaba.dubbo.config.service.export
+
+- ServiceExporter.java
+- ServiceServer.java
+
+工具类主要完成对apiconfig的封装，以及对一台服务器多个dubbo节点的支持(实际使用中可能不会在一台机器上部署多个dubbo节点，这里只是为了满足可以在一台机器上运行多个节点——多个节点本质就是断开不一样)；
+
+#####配置说明
+配置主要在server.properties中
+
+```
+#application 配置application相关信息
+#application的name
+application.name=
+#application的版本号，此信息会作为dubbo的provider的版本号，同时也会作为rest的contextpath[http://localhost:restport/application.version/xxx]
+application.version=v1
+#日志存放目录
+application.logdir=/var/log/
+
+#registry注册中心信息
+registry.address=zookeeper://127.0.0.1:2181
+registry.username=
+registry.password=
+#serviceserialization 序列化类型
+dubbo.serialization=kryo
+#service protocols with start port协议及其起始端口，在不同的dubbo节点有特定的id，对于当前dubbo节点的port就是起始port+id，多个协议使用“,”分割,每个协议的起始端口使用"dubbo:20880"的格式
+dubbo.protocols=dubbo:20880,rest:8080
+#线程数量
+dubbo.threads=500
+#service conf，rest server类型，使用不同的server需要加入响应的lib
+dubbo.rest.server=netty
+
+```
+
+
 ## 主要贡献者
 
 * 沈理 [当当网](http://www.dangdang.com/) shenli@dangdang.com

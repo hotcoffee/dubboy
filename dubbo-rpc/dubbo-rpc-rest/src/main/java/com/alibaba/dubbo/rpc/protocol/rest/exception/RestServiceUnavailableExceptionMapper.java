@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 
 /**
- * 403
+ * 503
  * @author BruceZCQ
  */
 public class RestServiceUnavailableExceptionMapper implements ExceptionMapper<ServiceUnavailableException> {
