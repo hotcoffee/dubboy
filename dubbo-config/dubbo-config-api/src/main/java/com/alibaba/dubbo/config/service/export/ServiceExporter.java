@@ -26,14 +26,15 @@ import javax.ws.rs.Path;
 
 import com.alibaba.dubbo.common.service.export.support.DubboApplication;
 import com.alibaba.dubbo.common.service.export.support.MethodUtils;
-import com.alibaba.dubbo.common.service.export.support.Protocol;
 import com.alibaba.dubbo.common.service.export.support.MethodUtils.MethodInfo;
+import com.alibaba.dubbo.common.service.export.support.Protocol;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
-import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionMapper;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionResponse;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestNotFoundExceptionMapper;
 import com.alibaba.dubbo.rpc.protocol.rest.exception.ValidationExceptionMapper;
 
 /**
@@ -63,7 +64,7 @@ public class ServiceExporter {
 			if (name.equals("rest")) {
 				this.setServer(DubboApplication.getRestServer());
 				this.setContextpath(DubboApplication.getApplicationVersion());
-				this.setExtension(RestExceptionMapper.class.getName()+","+ValidationExceptionMapper.class.getName());
+				this.setExtension(RestExceptionResponse.getRestExtension());
 			}
 		}
 	}
