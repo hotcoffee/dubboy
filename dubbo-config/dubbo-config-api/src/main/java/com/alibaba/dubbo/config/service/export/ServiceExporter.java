@@ -33,6 +33,8 @@ import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionMapper;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.ValidationExceptionMapper;
 
 /**
  * 
@@ -61,6 +63,7 @@ public class ServiceExporter {
 			if (name.equals("rest")) {
 				this.setServer(DubboApplication.getRestServer());
 				this.setContextpath(DubboApplication.getApplicationVersion());
+				this.setExtension(RestExceptionMapper.class.getName()+","+ValidationExceptionMapper.class.getName());
 			}
 		}
 	}
