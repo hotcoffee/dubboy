@@ -33,7 +33,7 @@ com.alibaba.dubbo.config.service.export
 - ServiceExporter.java
 - ServiceServer.java
 
-工具类主要完成对apiconfig的封装，以及对一台服务器多个dubbo节点的支持(实际使用中可能不会在一台机器上部署多个dubbo节点，这里只是为了满足可以在一台机器上运行多个节点——多个节点本质就是断开不一样)；
+工具类主要完成对apiconfig的封装，以及对一台服务器多个dubbo节点的支持(实际使用中可能不会在一台机器上部署多个dubbo节点，这里只是为了满足可以在一台机器上运行多个节点——多个节点本质就是端口不一样)；
 
 #####配置说明
 配置主要在server.properties中
