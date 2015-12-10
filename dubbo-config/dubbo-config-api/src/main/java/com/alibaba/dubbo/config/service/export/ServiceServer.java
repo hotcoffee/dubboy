@@ -16,11 +16,8 @@
 
 package com.alibaba.dubbo.config.service.export;
 
-import java.util.Map;
-
 import com.alibaba.dubbo.common.service.export.support.DubboApplication;
 import com.alibaba.dubbo.common.service.export.support.Log4jApplication;
-import com.alibaba.dubbo.common.service.export.support.MethodUtils.MethodInfo;
 
 /**
  * @author BruceZCQ
@@ -36,12 +33,6 @@ public abstract class ServiceServer {
 		this.initDb();
 		// init cache
 		this.initCache();
-		// provider
-		ServiceExporter exporter = new ServiceExporter(id);
-		this.exportServices(exporter);
-		this.exportServicePort(exporter.getPort());
-		this.exportServicesApis(exporter.getServicesApi());
-		this.exportServicesMethodsInfo(exporter.getMethodsInfo());
 	}
 	
 	/**
@@ -53,36 +44,5 @@ public abstract class ServiceServer {
 	 * 初始化缓存
 	 */
 	public abstract void initCache();
-	
-	/**
-	 * 暴露服务
-	 * @param exporter
-	 */
-	public abstract void exportServices(ServiceExporter exporter);
-	
-	/**
-	 * 导出服务的端口 <br/>
-	 * 使用RedisHash{ key:自定义, field:servername , value:port} 存储;
-	 * @param port
-	 */
-	public abstract void exportServicePort(Integer port);
-	
-	/**
-	 * 暴露服务的Api <br/>
-	 * @param servicesApi [Map] <br/>
-	 * key-> @Path.value <br/>
-	 * value-> apiInterfaceClas <br/>
-	 * 可使用Redis.hmset全部写入,RedisHash的key自定义 <br/>
-	 */
-	public abstract void exportServicesApis(Map<Object, Object> servicesApi);
-	
-	/**
-	 * 暴露服务的Api的Method信息 <br/>
-	 * @param serviceMethodsInfo [Map]<br/>
-	 * key-> {@linkplain MethodInfo#getPlainPath()} <br/>
-	 * value-> {@linkplain MethodInfo} <br/>
-	 * 可使用Redis.hmset全部写入,RedisHash的key自定义 <br/>
-	 */
-	public abstract void exportServicesMethodsInfo(Map<Object, Object> serviceMethodsInfo);
 	
 }
