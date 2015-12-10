@@ -29,11 +29,13 @@ import com.alibaba.dubbo.remoting.Transporter;
 import com.alibaba.dubbo.remoting.exchange.Exchanger;
 import com.alibaba.dubbo.remoting.telnet.TelnetHandler;
 import com.alibaba.dubbo.rpc.Protocol;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionResponse;
 
 /**
  * ProtocolConfig
  * 
  * @author william.liangf
+ * @author BruceZCQ: rest extension
  * @export
  */
 public class ProtocolConfig extends AbstractConfig {
@@ -446,10 +448,16 @@ public class ProtocolConfig extends AbstractConfig {
     }
 
     public String getExtension() {
-        return extension;
+    	if ("rest".equals(name) && ("".equals(extension))) {
+    		 this.extension = RestExceptionResponse.getRestExtension();
+         }
+        return this.extension;
     }
 
     public void setExtension(String extension) {
+    	if ("rest".equals(name) && ("".equals(extension))) {
+    		this.extension = RestExceptionResponse.getRestExtension();
+		}
         this.extension = extension;
     }
 
