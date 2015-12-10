@@ -1,6 +1,4 @@
-Dubbox now means Dubbo eXtensions. If you know java, javax and dubbo, you know what dubbox is :)
-
-Dubbox adds features like RESTful remoting, Kyro/FST serialization, etc to the popular [dubbo service framework](http://github.com/alibaba/dubbo). It's been used by several projects of [dangdang.com](http://www.dangdang.com), which is one of the major e-commerce companies in China.
+Dubboy is based [dubbox](https://github.com/dangdangdotcom/dubbox), the 'y' is short for yfss.
 
 ##YFSS 更新部分
 作者：BruceZCQ
@@ -66,7 +64,9 @@ dubbo.rest.server=netty
 
 ```
 
+Dubbox now means Dubbo eXtensions. If you know java, javax and dubbo, you know what dubbox is :)
 
+Dubbox adds features like RESTful remoting, Kyro/FST serialization, etc to the popular [dubbo service framework](http://github.com/alibaba/dubbo). It's been used by several projects of [dangdang.com](http://www.dangdang.com), which is one of the major e-commerce companies in China.
 ## 主要贡献者
 
 * 沈理 [当当网](http://www.dangdang.com/) shenli@dangdang.com
