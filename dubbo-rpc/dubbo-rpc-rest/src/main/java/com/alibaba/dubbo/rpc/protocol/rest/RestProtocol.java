@@ -23,6 +23,7 @@ import com.alibaba.dubbo.remoting.http.servlet.BootstrapListener;
 import com.alibaba.dubbo.remoting.http.servlet.ServletManager;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.dubbo.rpc.protocol.AbstractProxyProtocol;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionResponse;
 import com.alibaba.dubbo.rpc.ServiceClassHolder;
 import org.apache.http.HeaderElement;
 import org.apache.http.HeaderElementIterator;
@@ -173,7 +174,10 @@ public class RestProtocol extends AbstractProxyProtocol {
         clients.add(client);
 
         client.register(RpcContextFilter.class);
-        for (String clazz : Constants.COMMA_SPLIT_PATTERN.split(url.getParameter(Constants.EXTENSION_KEY, ""))) {
+        
+        //default extenstion : BruceZCQ
+        String defaultExtension = RestExceptionResponse.getRestExtension();
+        for (String clazz : Constants.COMMA_SPLIT_PATTERN.split(url.getParameter(Constants.EXTENSION_KEY, defaultExtension))) {
             if (!StringUtils.isEmpty(clazz)) {
                 try {
                     client.register(Thread.currentThread().getContextClassLoader().loadClass(clazz.trim()));
