@@ -5,6 +5,9 @@ Dubbox adds features like RESTful remoting, Kyro/FST serialization, etc to the p
 ##YFSS 更新部分
 作者：BruceZCQ
 
+#####REST协议
+修改初始端口为18080
+
 #####添加RestExceptionMapper,主要是	
 - RestForbiddenExceptionMapper[403];
 - RestNotAcceptableExceptionMapper[406];

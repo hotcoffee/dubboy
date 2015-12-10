@@ -25,6 +25,10 @@ import com.alibaba.dubbo.rpc.protocol.rest.RestConstraintViolation;
 import com.alibaba.dubbo.rpc.protocol.rest.RpcExceptionMapper;
 import com.alibaba.dubbo.rpc.protocol.rest.ViolationReport;
 
+/**
+ * 
+ * @author BruceZCQ
+ */
 public class ValidationExceptionMapper extends RpcExceptionMapper {
 
     protected Response handleConstraintViolationException(ConstraintViolationException cve) {
