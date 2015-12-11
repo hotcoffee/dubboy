@@ -39,7 +39,7 @@ public class DubboApplication {
 	private static PropertiesData log4jProperties = null;
 	private static PropertiesData serverProperties = null;
 	private static String serverName = null;
-	private static List<Protocol> protocols = null;
+	private static List<String> protocols = null;
 	private static String restServer = null;
 	private static String appVersion = null;
 	private static String serialization = null;
@@ -152,16 +152,16 @@ public class DubboApplication {
 	 * 获取协议
 	 * @return
 	 */
-	public static List<Protocol> getProtocols() {
+	public static List<String> getProtocols() {
 		if (null == DubboApplication.protocols) {
-			DubboApplication.protocols = new ArrayList<Protocol>();
+			DubboApplication.protocols = new ArrayList<String>();
 			String _protocols = DubboApplication.validateServerProperty("dubbo.protocols");
 			if (_protocols.contains(",")) {
 				String[] _protocols_ = _protocols.split(",");
 				
 				if (null != _protocols_) {
 					for (String protocolStr : _protocols_) {
-						DubboApplication.protocols.add(new Protocol(protocolStr));
+						DubboApplication.protocols.add(protocolStr);
 					}
 				}
 			}

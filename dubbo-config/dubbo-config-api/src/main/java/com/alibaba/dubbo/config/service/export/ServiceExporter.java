@@ -27,7 +27,6 @@ import javax.ws.rs.Path;
 import com.alibaba.dubbo.common.service.export.support.DubboApplication;
 import com.alibaba.dubbo.common.service.export.support.MethodUtils;
 import com.alibaba.dubbo.common.service.export.support.MethodUtils.MethodInfo;
-import com.alibaba.dubbo.common.service.export.support.Protocol;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
@@ -43,20 +42,20 @@ public class ServiceExporter {
 
 	private ApplicationConfig application = null;
 	private RegistryConfig registry = null;
-	private List<DubboProtocol> protocols = new ArrayList<DubboProtocol>();
+	private List<Protocol> protocols = new ArrayList<Protocol>();
 	private static final String CONSUMER = "-Consumer";
 	private int port = -1;
 	private Map<String, ReferenceConfig<Object>> referenceMapping = new HashMap<String, ReferenceConfig<Object>>();
 	private Map<Object, Object> servicesApi = new HashMap<Object, Object>();
 	private Map<Object, Object> methodsInfo = new HashMap<Object, Object>();
 
-	private static class DubboProtocol extends ProtocolConfig {
+	private static class Protocol extends ProtocolConfig {
 
 		private static final long serialVersionUID = -6210646334091868933L;
 
-		public DubboProtocol(String name, int port) {
+		public Protocol(String name) {
 			this.setName(name);
-			this.setPort(port);
+			this.setPort(-1);
 			this.setSerialization(DubboApplication.getSerialization());
 			this.setThreads(DubboApplication.getThreads());
 			if (name.equals("rest")) {
@@ -70,10 +69,10 @@ public class ServiceExporter {
 	public ServiceExporter(Integer id) {
 		this();
 		// 服务提供者协议配置
-		List<Protocol> protocols = DubboApplication.getProtocols();
-		DubboProtocol protocolCfg = null;
-		for (Protocol protocol : protocols) {
-			protocolCfg = new DubboProtocol(protocol.getName(), protocol.getStartPort()+id);
+		List<String> protocols = DubboApplication.getProtocols();
+		Protocol protocolCfg = null;
+		for (String protocol : protocols) {
+			protocolCfg = new Protocol(protocol);
 			this.protocols.add(protocolCfg);
 		}
 	}

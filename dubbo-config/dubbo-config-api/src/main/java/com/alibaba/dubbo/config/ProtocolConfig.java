@@ -23,8 +23,8 @@ import com.alibaba.dubbo.common.status.StatusChecker;
 import com.alibaba.dubbo.common.threadpool.ThreadPool;
 import com.alibaba.dubbo.config.support.Parameter;
 import com.alibaba.dubbo.registry.support.AbstractRegistryFactory;
-import com.alibaba.dubbo.remoting.Dispatcher;
 import com.alibaba.dubbo.remoting.Codec;
+import com.alibaba.dubbo.remoting.Dispatcher;
 import com.alibaba.dubbo.remoting.Transporter;
 import com.alibaba.dubbo.remoting.exchange.Exchanger;
 import com.alibaba.dubbo.remoting.telnet.TelnetHandler;
@@ -455,9 +455,6 @@ public class ProtocolConfig extends AbstractConfig {
     }
 
     public void setExtension(String extension) {
-    	if ("rest".equals(name) && (null == extension || "".equals(extension))) {
-    		this.extension = RestExceptionResponse.getRestExtension();
-		}
         this.extension = extension;
     }
 

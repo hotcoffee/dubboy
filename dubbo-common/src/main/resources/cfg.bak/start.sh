@@ -20,7 +20,7 @@ start)
       fi
     fi
     #Main class
-	${JAVA_CMD} -cp ${CPATH} com.ikaihuo.bis.mobile.server.Main ${ID} &
+	${JAVA_CMD} -cp ${CPATH} -server com.ikaihuo.bis.mobile.server.Main ${ID} &
 	;;
 stop)
 	echo "Stoping Server${ID}..."
@@ -28,7 +28,7 @@ stop)
     then
       echo "no server to stop (could not find file $PIDFILE)"
     else
-		kill -9 `cat "$PIDFILE"`
+		kill `cat "$PIDFILE"`
 		rm "$PIDFILE"
 		echo "Stoped Server${ID}!"
 	fi
