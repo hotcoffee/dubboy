@@ -29,24 +29,24 @@ public abstract class ServiceExportServer extends ServiceServer {
 		super(id);
 		// provider
 		ServiceExporter exporter = new ServiceExporter(id);
-		this.exportServices(exporter);
-		this.exportServicePort(exporter.getPort());
-		this.exportServicesApis(exporter.getServicesApi());
-		this.exportServicesMethodsInfo(exporter.getMethodsInfo());
+		this.onExportServices(exporter);
+		this.onExportServicePort(exporter.getPort());
+		this.onExportServicesApis(exporter.getServicesApi());
+		this.onExportServicesMethodsInfo(exporter.getMethodsInfo());
 	}
 	
 	/**
 	 * 暴露服务
 	 * @param exporter
 	 */
-	public abstract void exportServices(ServiceExporter exporter);
+	public abstract void onExportServices(ServiceExporter exporter);
 	
 	/**
 	 * 导出服务的端口 <br/>
 	 * 使用RedisHash{ key:自定义, field:servername , value:port} 存储;
 	 * @param port
 	 */
-	public abstract void exportServicePort(Integer port);
+	public abstract void onExportServicePort(Integer port);
 	
 	/**
 	 * 暴露服务的Api <br/>
@@ -55,7 +55,7 @@ public abstract class ServiceExportServer extends ServiceServer {
 	 * value-> apiInterfaceClas <br/>
 	 * 可使用Redis.hmset全部写入,RedisHash的key自定义 <br/>
 	 */
-	public abstract void exportServicesApis(Map<Object, Object> servicesApi);
+	public abstract void onExportServicesApis(Map<Object, Object> servicesApi);
 	
 	/**
 	 * 暴露服务的Api的Method信息 <br/>
@@ -64,6 +64,6 @@ public abstract class ServiceExportServer extends ServiceServer {
 	 * value-> {@linkplain MethodInfo} <br/>
 	 * 可使用Redis.hmset全部写入,RedisHash的key自定义 <br/>
 	 */
-	public abstract void exportServicesMethodsInfo(Map<Object, Object> serviceMethodsInfo);
+	public abstract void onExportServicesMethodsInfo(Map<Object, Object> serviceMethodsInfo);
 	
 }

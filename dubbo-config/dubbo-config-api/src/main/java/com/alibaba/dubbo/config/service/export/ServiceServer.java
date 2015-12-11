@@ -30,19 +30,25 @@ public abstract class ServiceServer {
 		//init log4j
 		Log4jApplication.init(id);
 		//init db
-		this.initDb();
+		this.onInitDb();
 		// init cache
-		this.initCache();
+		this.onInitCache();
+		// start server
+		this.onStart();
 	}
 	
 	/**
 	 * 初始化数据库
 	 */
-	public abstract void initDb();
+	public abstract void onInitDb();
 	
 	/**
 	 * 初始化缓存
 	 */
-	public abstract void initCache();
+	public abstract void onInitCache();
 	
+	/**
+	 * 服务启动
+	 */
+	public abstract void onStart();
 }
