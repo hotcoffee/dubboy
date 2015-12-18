@@ -175,9 +175,7 @@ public class RestProtocol extends AbstractProxyProtocol {
 
         client.register(RpcContextFilter.class);
         
-        //default extenstion : BruceZCQ
-        String defaultExtension = RestExceptionResponse.getRestExtension();
-        for (String clazz : Constants.COMMA_SPLIT_PATTERN.split(url.getParameter(Constants.EXTENSION_KEY, defaultExtension))) {
+        for (String clazz : Constants.COMMA_SPLIT_PATTERN.split(url.getParameter(Constants.EXTENSION_KEY, ""))) {
             if (!StringUtils.isEmpty(clazz)) {
                 try {
                     client.register(Thread.currentThread().getContextClassLoader().loadClass(clazz.trim()));

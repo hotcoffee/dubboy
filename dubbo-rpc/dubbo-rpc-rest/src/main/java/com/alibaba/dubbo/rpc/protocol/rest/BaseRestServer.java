@@ -15,13 +15,16 @@
  */
 package com.alibaba.dubbo.rpc.protocol.rest;
 
+import org.jboss.resteasy.spi.ResteasyDeployment;
+
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.common.utils.StringUtils;
-import org.jboss.resteasy.spi.ResteasyDeployment;
+import com.alibaba.dubbo.rpc.protocol.rest.exception.RestExceptionResponse;
 
 /**
  * @author lishen
+ * @author BruceZCQ
  */
 public abstract class BaseRestServer implements RestServer {
 
@@ -33,7 +36,8 @@ public abstract class BaseRestServer implements RestServer {
         // TODO users can override this mapper, but we just rely on the current priority strategy of resteasy
         getDeployment().getProviderClasses().add(RpcExceptionMapper.class.getName());
 
-        loadProviders(url.getParameter(Constants.EXTENSION_KEY, ""));
+        //add default extension : BruceZCQ
+        loadProviders(url.getParameter(Constants.EXTENSION_KEY, RestExceptionResponse.getRestExtension()));
 
         doStart(url);
     }

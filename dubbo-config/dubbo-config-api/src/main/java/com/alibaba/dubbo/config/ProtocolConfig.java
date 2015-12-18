@@ -448,9 +448,6 @@ public class ProtocolConfig extends AbstractConfig {
     }
 
     public String getExtension() {
-    	if ("rest".equals(name) && (null == extension || "".equals(extension))) {
-    		 this.extension = RestExceptionResponse.getRestExtension();
-         }
         return this.extension;
     }
 
