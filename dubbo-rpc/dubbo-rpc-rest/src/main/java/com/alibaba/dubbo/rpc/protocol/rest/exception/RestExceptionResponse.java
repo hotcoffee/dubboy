@@ -45,6 +45,8 @@ public class RestExceptionResponse {
 		extension.append(RestRedirectionExceptionMapper.class.getName()).append(",");
 		//servererror
 		extension.append(RestServerErrorExceptionMapper.class.getName()).append(",");
+		//server runtime error
+		extension.append(RestServerRuntimeErrorExceptionMapper.class.getName()).append(",");
 		//serverunavailable
 		extension.append(RestServiceUnavailableExceptionMapper.class.getName()).append(",");
 		//validation
