@@ -146,8 +146,8 @@
 
 		<!-- for maven compiler plugin -->
 		<maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
-		<java_source_version>1.6</java_source_version>
-		<java_target_version>1.6</java_target_version>
+		<java_source_version>1.7</java_source_version>
+		<java_target_version>1.7</java_target_version>
 		<file_encoding>UTF-8</file_encoding>
 
 		<maven_source_plugin_version>2.1.1</maven_source_plugin_version>
@@ -724,4 +724,11 @@
 			<timezone>+8</timezone>
 		</developer>
 	</developers>
+	<!--deploy-->
+	<distributionManagement>
+		<repository>
+			<id>nexus-thirdparty</id>
+			<url>http://maven.ikaihuo.com/content/repositories/thirdparty</url>
+		</repository>
+	</distributionManagement>
 </project>
