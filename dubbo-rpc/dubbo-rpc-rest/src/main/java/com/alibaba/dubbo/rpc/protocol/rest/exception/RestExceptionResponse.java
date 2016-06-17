@@ -18,38 +18,40 @@ package com.alibaba.dubbo.rpc.protocol.rest.exception;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+
 /**
  * @author BruceZCQ
  */
 public class RestExceptionResponse {
-	
+
 	public static Response getResponse(Status status, String message) {
-        return Response.status(status).entity(message).type("text/plain").build();
+		return Response.status(status).entity(message).type(ContentType.TEXT_PLAIN_UTF_8).build();
 	}
-	
+
 	public static String getRestExtension() {
 		StringBuilder extension = new StringBuilder();
-		//forbidden
+		// forbidden
 		extension.append(RestForbiddenExceptionMapper.class.getName()).append(",");
-		//notacceptable
+		// notacceptable
 		extension.append(RestNotAcceptableExceptionMapper.class.getName()).append(",");
-		//notallowed
+		// notallowed
 		extension.append(RestNotAllowedExceptionMapper.class.getName()).append(",");
-		//notauthrized
+		// notauthrized
 		extension.append(RestNotAuthorizedExceptionMapper.class.getName()).append(",");
-		//notfound
+		// notfound
 		extension.append(RestNotFoundExceptionMapper.class.getName()).append(",");
-		//notsupported
+		// notsupported
 		extension.append(RestNotSupportedExceptionMapper.class.getName()).append(",");
-		//redirection
+		// redirection
 		extension.append(RestRedirectionExceptionMapper.class.getName()).append(",");
-		//servererror
+		// servererror
 		extension.append(RestServerErrorExceptionMapper.class.getName()).append(",");
-		//server runtime error
+		// server runtime error
 		extension.append(RestServerRuntimeErrorExceptionMapper.class.getName()).append(",");
-		//serverunavailable
+		// serverunavailable
 		extension.append(RestServiceUnavailableExceptionMapper.class.getName()).append(",");
-		//validation
+		// validation
 		extension.append(ValidationExceptionMapper.class.getName());
 		return extension.toString();
 	}

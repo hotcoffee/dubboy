@@ -24,6 +24,7 @@ import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.common.logger.jcl.JclLoggerAdapter;
 import com.alibaba.dubbo.common.logger.jdk.JdkLoggerAdapter;
 import com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter;
+import com.alibaba.dubbo.common.logger.log4j2.Log4j2LoggerAdapter;
 import com.alibaba.dubbo.common.logger.slf4j.Slf4jLoggerAdapter;
 import com.alibaba.dubbo.common.logger.support.FailsafeLogger;
 
@@ -37,42 +38,44 @@ public class LoggerFactory {
 	private LoggerFactory() {
 	}
 
-	private static volatile LoggerAdapter LOGGER_ADAPTER;
-	
-	private static final ConcurrentMap<String, FailsafeLogger> LOGGERS = new ConcurrentHashMap<String, FailsafeLogger>();
+	private static volatile LoggerAdapter						LOGGER_ADAPTER;
+
+	private static final ConcurrentMap<String, FailsafeLogger>	LOGGERS	= new ConcurrentHashMap<String, FailsafeLogger>();
 
 	// 查找常用的日志框架
 	static {
-	    String logger = System.getProperty("dubbo.application.logger");
-	    if ("slf4j".equals(logger)) {
-    		setLoggerAdapter(new Slf4jLoggerAdapter());
-    	} else if ("jcl".equals(logger)) {
-    		setLoggerAdapter(new JclLoggerAdapter());
-    	} else if ("log4j".equals(logger)) {
-    		setLoggerAdapter(new Log4jLoggerAdapter());
-    	} else if ("jdk".equals(logger)) {
-    		setLoggerAdapter(new JdkLoggerAdapter());
-    	} else {
-    		try {
-    			setLoggerAdapter(new Log4jLoggerAdapter());
-            } catch (Throwable e1) {
-                try {
-                	setLoggerAdapter(new Slf4jLoggerAdapter());
-                } catch (Throwable e2) {
-                    try {
-                    	setLoggerAdapter(new JclLoggerAdapter());
-                    } catch (Throwable e3) {
-                        setLoggerAdapter(new JdkLoggerAdapter());
-                    }
-                }
-            }
-    	}
+		String logger = System.getProperty("dubbo.application.logger");
+		if ("slf4j".equals(logger)) {
+			setLoggerAdapter(new Slf4jLoggerAdapter());
+		} else if ("jcl".equals(logger)) {
+			setLoggerAdapter(new JclLoggerAdapter());
+		} else if ("log4j".equals(logger)) {
+			setLoggerAdapter(new Log4jLoggerAdapter());
+		} else if ("log4j2".equals(logger)) {
+			setLoggerAdapter(new Log4j2LoggerAdapter());
+		} else if ("jdk".equals(logger)) {
+			setLoggerAdapter(new JdkLoggerAdapter());
+		} else {
+			try {
+				setLoggerAdapter(new Log4j2LoggerAdapter());
+			} catch (Throwable e1) {
+				try {
+					setLoggerAdapter(new Slf4jLoggerAdapter());
+				} catch (Throwable e2) {
+					try {
+						setLoggerAdapter(new JclLoggerAdapter());
+					} catch (Throwable e3) {
+						setLoggerAdapter(new JdkLoggerAdapter());
+					}
+				}
+			}
+		}
 	}
-	
+
 	public static void setLoggerAdapter(String loggerAdapter) {
-	    if (loggerAdapter != null && loggerAdapter.length() > 0) {
-	        setLoggerAdapter(ExtensionLoader.getExtensionLoader(LoggerAdapter.class).getExtension(loggerAdapter));
-	    }
+		if (loggerAdapter != null && loggerAdapter.length() > 0) {
+			setLoggerAdapter(ExtensionLoader.getExtensionLoader(LoggerAdapter.class).getExtension(loggerAdapter));
+		}
 	}
 
 	/**
@@ -123,11 +126,12 @@ public class LoggerFactory {
 		}
 		return logger;
 	}
-	
+
 	/**
 	 * 动态设置输出日志级别
 	 * 
-	 * @param level 日志级别
+	 * @param level
+	 *            日志级别
 	 */
 	public static void setLevel(Level level) {
 		LOGGER_ADAPTER.setLevel(level);
@@ -141,7 +145,7 @@ public class LoggerFactory {
 	public static Level getLevel() {
 		return LOGGER_ADAPTER.getLevel();
 	}
-	
+
 	/**
 	 * 获取日志文件
 	 * 

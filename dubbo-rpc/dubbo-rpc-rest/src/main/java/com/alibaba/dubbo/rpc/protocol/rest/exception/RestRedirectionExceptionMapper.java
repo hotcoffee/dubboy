@@ -23,12 +23,13 @@ import javax.ws.rs.ext.ExceptionMapper;
 
 /**
  * 3xx
+ * 
  * @author BruceZCQ
  */
 public class RestRedirectionExceptionMapper implements ExceptionMapper<RedirectionException> {
 
 	@Override
 	public Response toResponse(RedirectionException e) {
-		return RestExceptionResponse.getResponse(Status.MOVED_PERMANENTLY, "Oops! redirection Error!"+e.getLocalizedMessage());
+		return RestExceptionResponse.getResponse(Status.MOVED_PERMANENTLY, "Oops! redirection Error!" + e.getLocalizedMessage());
 	}
 }

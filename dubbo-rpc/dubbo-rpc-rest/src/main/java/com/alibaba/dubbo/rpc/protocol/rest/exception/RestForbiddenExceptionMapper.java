@@ -23,12 +23,13 @@ import javax.ws.rs.ext.ExceptionMapper;
 
 /**
  * 403
+ * 
  * @author BruceZCQ
  */
 public class RestForbiddenExceptionMapper implements ExceptionMapper<ForbiddenException> {
 
 	@Override
 	public Response toResponse(ForbiddenException e) {
-		return RestExceptionResponse.getResponse(Status.FORBIDDEN, "Oops! the requested resource is Forbidden!"+e.getLocalizedMessage());
+		return RestExceptionResponse.getResponse(Status.FORBIDDEN, "Oops! the requested resource is Forbidden!" + e.getLocalizedMessage());
 	}
 }

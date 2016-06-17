@@ -21,7 +21,7 @@
         <artifactId>dubbo-parent</artifactId>
         <version>4.0.0</version>
     </parent>
-    <artifactId>dubboy</artifactId>
+    <artifactId>dubbo</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>The all in one project of dubbo</description>
