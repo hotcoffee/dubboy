@@ -18,7 +18,7 @@
 	<parent>
 		<groupId>com.alibaba</groupId>
 		<artifactId>dubbo-container</artifactId>
-		<version>4.0.4</version>
+		<version>4.0.5-SNAPSHOT</version>
 	</parent>
 	<artifactId>dubbo-container-spring</artifactId>
 	<packaging>jar</packaging>
