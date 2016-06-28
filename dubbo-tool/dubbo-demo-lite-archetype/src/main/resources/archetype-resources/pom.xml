@@ -18,14 +18,11 @@
     <parent>
         <groupId>com.alibaba</groupId>
         <artifactId>dubbo-parent</artifactId>
-        <version>4.0.1-SNAPSHOT</version>
+        <version>4.0.4-SNAPSHOT</version>
     </parent>
-    <artifactId>${artifactId}</artifactId>
-    <groupId>${groupId}</groupId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The demo lite module of dubbo project</description>
-    <version>${version}</version>
     <properties>
         <skip_maven_deploy>true</skip_maven_deploy>
     </properties>
@@ -35,7 +32,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>4.0.1-SNAPSHOT</version>
+                <version>${project.parent.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
