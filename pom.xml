@@ -721,9 +721,9 @@ limitations under the License.</copyright>
 		<url>http://code.alibabatech.com/jira/browse/DUBBO</url>
 	</issueManagement>
 	<scm>
-	    <connection>scm:git:https://github.com/YFSS/dubboy.git</connection>
-	    <url>scm:git:https://github.com/YFSS/dubboy.git</url>
-	    <developerConnection>scm:git:https://github.com/YFSS/dubboy.git</developerConnection> 
+	    <connection>scm:git:git@github.com:YFSS/dubboy.git</connection>
+	    <url>scm:git:git@github.com:YFSS/dubboy.git</url>
+	    <developerConnection>scm:git:git@github.com:YFSS/dubboy.git</developerConnection> 
 	    <tag>HEAD</tag>
 	</scm>
 	<mailingLists>
