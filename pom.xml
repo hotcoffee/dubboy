@@ -20,7 +20,7 @@
 		<version>2.0</version> </parent> -->
 	<groupId>com.alibaba</groupId>
 	<artifactId>dubbo-parent</artifactId>
-	<version>4.0.0</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>The parent project of dubbo</description>
@@ -170,7 +170,10 @@
 		<maven_war_plugin_version>2.1.1</maven_war_plugin_version>
 		<maven_install_plugin_version>2.3.1</maven_install_plugin_version>
 		<maven_deploy_plugin_version>2.7</maven_deploy_plugin_version>
-
+		<maven_javadoc_plugin_version>2.9</maven_javadoc_plugin_version>
+		<maven_release_plugin_version>2.5.1</maven_release_plugin_version>
+		<maven_javadoc_plugin_version>2.9</maven_javadoc_plugin_version>
+		
         <maven-surefire-plugin_version>2.17</maven-surefire-plugin_version>
         <maven-jetty-plugin_version>8.1.15.v20140411</maven-jetty-plugin_version>
 	</properties>
@@ -598,6 +601,25 @@
 					<skip>${skip_maven_deploy}</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-javadoc-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <id>attach-javadocs</id>
+			            <goals>
+			                <goal>jar</goal>
+			            </goals>
+			            <configuration>
+			                <additionalparam>-Xdoclint:none</additionalparam>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
 		</plugins>
 
 		<pluginManagement>
@@ -668,6 +690,16 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven_release_plugin_version}</version>
+				</plugin>
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-javadoc-plugin</artifactId>
+				    <version>${maven_javadoc_plugin_version}</version>
+				</plugin>				
 			</plugins>
 		</pluginManagement>
 
@@ -678,8 +710,10 @@
 		<url>http://code.alibabatech.com/jira/browse/DUBBO</url>
 	</issueManagement>
 	<scm>
-		<url>http://code.alibabatech.com/svn/dubbo/trunk</url>
-		<connection>scm:svn:http://code.alibabatech.com/svn/dubbo/trunk</connection>
+	    <connection>scm:git:https://github.com/YFSS/dubboy.git</connection>
+	    <url>scm:git:https://github.com/YFSS/dubboy.git</url>
+	    <developerConnection>scm:git:https://github.com/YFSS/dubboy.git</developerConnection> 
+	    <tag>HEAD</tag>
 	</scm>
 	<mailingLists>
 		<mailingList>
@@ -756,10 +790,49 @@
 		</developer>
 	</developers>
 	<!--deploy-->
-	<distributionManagement>
+	  <distributionManagement>
+	    <repository>
+	      <id>ikaihuo-release</id>
+	      <url>http://maven.ikaihuo.com/content/repositories/releases</url>
+	    </repository>
+	    <snapshotRepository>
+	      <id>ikaihuo-snapshot</id>
+	      <url>http://maven.ikaihuo.com/content/repositories/snapshots</url>
+	    </snapshotRepository>
+	  </distributionManagement>
+	<repositories>
 		<repository>
-			<id>nexus-thirdparty</id>
-			<url>http://maven.ikaihuo.com/content/repositories/thirdparty</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<id>snapshots</id>
+			<name>snapshots Repository</name>
+			<url>http://maven.ikaihuo.com/content/repositories/snapshots/</url>
 		</repository>
-	</distributionManagement>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<id>releases</id>
+			<name>releases Repository</name>
+			<url>http://maven.ikaihuo.com/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<id>thirdparty</id>
+			<name>thirdparty Repository</name>
+			<url>http://maven.ikaihuo.com/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
 </project>

@@ -4,7 +4,7 @@
 
   <groupId>com.alibaba</groupId>
   <artifactId>dubbo-demo-lite-archetype</artifactId>
-  <version>4.0.0</version>
+  <version>4.0.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>dubbo-demo-lite-archetype</name>
