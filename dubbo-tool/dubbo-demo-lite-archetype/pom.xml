@@ -5,6 +5,7 @@
 		<groupId>com.alibaba</groupId>
 		<artifactId>dubbo-parent</artifactId>
 		<version>4.0.4-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
   <artifactId>dubbo-demo-lite-archetype</artifactId>
   <packaging>maven-archetype</packaging>
@@ -108,8 +109,4 @@
     </license>
   </licenses>
 
-  <scm>
-    <connection>scm:svn:http://code.alibabatech.com/svn/dubbo/trunk/dubbo-demo-lite</connection>
-    <url>http://code.alibabatech.com/svn/dubbo/trunk/dubbo-demo-lite</url>
-  </scm>
 </project>

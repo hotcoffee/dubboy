@@ -20,6 +20,7 @@
 		<groupId>com.alibaba</groupId>
 		<artifactId>dubbo-parent</artifactId>
 		<version>4.0.4-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
 	<artifactId>dubbo-demo-lite</artifactId>
 	<packaging>pom</packaging>
@@ -43,4 +44,10 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+            </dependency>
+        </dependencies>
 </project>

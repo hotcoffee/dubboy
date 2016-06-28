@@ -15,7 +15,7 @@
  */
 package com.alibaba.dubbo.demolite.user;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import java.io.Serializable;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author lishen
@@ -35,7 +36,7 @@ public class User implements Serializable {
 
     @NotNull
     @Min(1L)
-    private Long id;
+    private Long   id;
 
     @JsonProperty("username")
     @XmlElement(name = "username")
@@ -69,9 +70,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User (" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ')';
+        return "User (" + "id=" + id + ", name='" + name + '\'' + ')';
     }
 }
