@@ -11,6 +11,9 @@
   <packaging>maven-archetype</packaging>
   <name>dubbo-demo-lite-archetype</name>
 
+	<properties>
+		<skip_maven_deploy>true</skip_maven_deploy>
+	</properties>
   <build>
     <extensions>
       <extension>
